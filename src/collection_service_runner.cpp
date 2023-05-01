@@ -22,8 +22,8 @@ void fcs::CollectionServiceRunner::StartService(std::ostream& os)
 	fcs::ScanService scan_service(m_file_name_pattern, m_message_buffer, m_scan_directories);
 	fcs::CopyService copy_service(m_message_buffer);
 
-	m_j_scan_thread = std::jthread(&fcs::ScanService::ScanDirectories, scan_service, m_stop_source.get_token());
-	m_j_copy_thread = std::jthread(&fcs::CopyService::RunCopyService, copy_service, m_stop_source.get_token());
+	m_j_scan_thread = std::thread(&fcs::ScanService::ScanDirectories, scan_service, m_stop_source.get_token());
+	m_j_copy_thread = std::thread(&fcs::CopyService::RunCopyService, copy_service, m_stop_source.get_token());
 
 	m_service_running = true;
 	os << __FUNCTION__ << ": Data Collection Service is running..." << std::endl;

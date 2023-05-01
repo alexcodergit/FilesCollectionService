@@ -37,8 +37,8 @@ namespace fcs
 					ofs.close();
 				}
 				else {
-					const std::string message = "Can't create file in " + std::string((const char*)full_name.c_str());
-					throw std::exception(message.c_str());
+					std::string const message = "Can't create file in " + std::string((const char*)full_name.c_str());
+					throw std::runtime_error(message.c_str());
 				}
 			}
 
@@ -55,8 +55,8 @@ namespace fcs
 					ifs.close();
 				}
 				else {
-					const std::string message = "Can't open file " + std::string((const char*)full_name.c_str());
-					throw std::exception(message.c_str());
+					std::string const message = "Can't create file in " + std::string((const char*)full_name.c_str());
+					throw std::runtime_error(message.c_str());
 				}
 			}
 

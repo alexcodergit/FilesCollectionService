@@ -17,8 +17,8 @@ namespace fcs
 		std::vector<fcs::DirectoryFileMessage> m_scan_directories;
 		std::atomic_bool  m_service_running;
 		std::stop_source m_stop_source;
-		std::jthread m_j_scan_thread;
-		std::jthread m_j_copy_thread;
+		std::thread m_j_scan_thread;
+		std::thread m_j_copy_thread;
 		fcs::MessageBuffer<fcs::DirectoryFileMessage> m_message_buffer;
 
 

@@ -32,7 +32,7 @@ void fcs::ScanService::ScanDirectories(std::stop_token stoken)
 				}
 			}
 			if (!messages.empty()) {
-				std::exchange(m_message_buffer.m_messages, messages);
+				std::swap(m_message_buffer.m_messages, messages);
 				m_message_buffer.m_cond.notify_all();
 			}
 		}

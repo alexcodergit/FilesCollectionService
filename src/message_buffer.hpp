@@ -38,7 +38,7 @@ namespace fcs
 		{
 			std::unique_lock<std::mutex> ulock(m_mut);
 			m_cond.wait(ulock, [this] {return m_messages.empty(); });
-			std::exchange(m_messages, messages);
+			std::swap(m_messages, messages);
 			m_cond.notify_all();
 		}
 	};
