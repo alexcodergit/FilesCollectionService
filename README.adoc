@@ -1,0 +1,44 @@
+= Files Collection Service
+
+:toc:
+:toc-placement!:
+
+toc::[]
+
+[[intro]]
+Description
+------------
+
+This project implements a simple files collection service. To run the service, 
+two directories must be provided as command line parameters: `source_dir` and `target_dir`. 
+
+The service runs in the background and scans ongoing the `source_dir` for files
+with specified name pattern. The files that match the pattern moved into `target_dir`.
+
+The service detects files in `source_dir` and its subdirectories, recursively. The folder
+structure of folders in `source_dir` contaning files matching specified pattern recreated
+in `target_dir`.
+
+Current implementation detects files in following format:
+
+    Starts with `core.<variable name of a service>.`
+    Ends with `lz4`
+    Contains one or more hexadecimal id separated by dots
+    Example: `core.ServiceName.30A7.3D17.lz4`
+
+The implementation can be easily extended to detect other file name patterns.
+
+The project is tested on Windows (10) and Linux (Ubuntu) machines. 
+To build the project, run cmake command:
+
+`cmake CMakeLists.txt`
+
+from the directory containing CMakeLists.txt. This will create Visual Studio Project
+on windows and Makefile on Linux.
+On Windows, open the `FilesCollectionService.sln` file with MS Visual Studio and compile 
+the project.
+On Linux, run 
+
+`make` 
+
+from the same directory.
