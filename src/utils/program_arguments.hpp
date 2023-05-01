@@ -10,7 +10,7 @@ namespace fcs
 	{
 		struct ProgramArgumentsParser 
 		{
-			std::string const m_const_usage = "'test': run tests\n'source_dir' 'target_dir': source directory, target directory\n";
+			std::string const m_const_usage = "'FilesCollectionService test': -run tests\n'FilesCollectionService directory: ' -generates files with different name patterns into directory\n'source_dir' 'target_dir': -run service\n";
 			int m_run_option;
 			std::string m_source_dir;
 			std::string m_target_dir;

@@ -11,10 +11,14 @@ fcs::utils::ProgramArgumentsParser::ProgramArgumentsParser(int argc, const char*
 		m_run_option = -1;
 	}
 	else if (argc == 2) {
-		std::string opt(argv[1]);
-		TrimString(opt);
-		if (opt == "test") {
+		std::string option{ argv[1] };
+		TrimString(option);
+		if (option == "test") {
 			m_run_option = 1;
+		}
+		else if (std::filesystem::is_directory(option)) {
+			m_source_dir = option;
+			m_run_option = 2;
 		}
 		else {
 			os << "Wrong arguments provided." << std::endl;
@@ -24,12 +28,12 @@ fcs::utils::ProgramArgumentsParser::ProgramArgumentsParser(int argc, const char*
 		}
 	}
 	else {
-		std::string  src(argv[1]);
-		std::string  tar(argv[2]);
+		std::string  src{ argv[1] };
+		std::string  tar{ argv[2] };
 		TrimString(src);
 		TrimString(tar);
-		std::filesystem::path path_src(src);
-		std::filesystem::path path_tar(tar);
+		std::filesystem::path path_src{ src };
+		std::filesystem::path path_tar{ tar };
 		if (!std::filesystem::is_directory(path_src)) {
 			os << src << " is not vaid path." << std::endl;
 			m_run_option = -1;
@@ -41,7 +45,7 @@ fcs::utils::ProgramArgumentsParser::ProgramArgumentsParser(int argc, const char*
 		if (std::filesystem::is_directory(path_src) && std::filesystem::is_directory(path_tar)) {
 			m_source_dir = src;
 			m_target_dir = tar;
-			m_run_option = 2;
+			m_run_option = 3;
 		}
 	}
 }
